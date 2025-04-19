@@ -3,50 +3,38 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>網購商店</title>
-  <link rel="stylesheet" href="style.css">
+  <title>首頁｜我的購物網站</title>
+  <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
   <header>
-    <h1>網購商店</h1>
+    <h1>我的購物網站</h1>
     <nav>
-      <a href="#products">商品清單</a>
-      <a href="#contact">聯絡我們</a>
+      <ul>
+        <li><a href="index.html">首頁</a></li>
+        <li><a href="products.html">所有商品</a></li>
+        <li><a href="cart.html">購物車</a></li>
+      </ul>
     </nav>
   </header>
 
   <main>
-    <section id="products">
-      <h2>商品清單</h2>
-      <div id="product-list" class="product-list">
-        <!-- 商品會在這裡顯示 -->
-      </div>
+    <section class="hero">
+      <h2>歡迎光臨！</h2>
+      <p>在這裡找到你最喜歡的商品</p>
+      <a href="products.html" class="btn">立即選購</a>
     </section>
 
-    <section id="contact">
-      <h2>訂單資訊</h2>
-      <form id="order-form">
-        <label for="name">姓名：</label>
-        <input type="text" id="name" name="name" required>
-        
-        <label for="contact">聯絡方式：</label>
-        <input type="text" id="contact" name="contact" required>
-        
-        <label for="product">選擇商品：</label>
-        <select id="product" name="product">
-          <!-- 商品選項將會自動填充 -->
-        </select>
-
-        <label for="quantity">數量：</label>
-        <input type="number" id="quantity" name="quantity" required>
-
-        <button type="submit">送出訂單</button>
-      </form>
+    <section class="featured">
+      <h2>精選商品</h2>
+      <div id="featured-products" class="product-grid">
+        <!-- 精選商品卡片將由 script.js 動態產生 -->
+      </div>
     </section>
   </main>
 
   <footer>
-    <p>&copy; 2025 網購商店</p>
+    <p>&copy; 2025 我的購物網站</p>
   </footer>
 
   <script src="script.js"></script>
