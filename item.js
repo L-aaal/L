@@ -1,42 +1,58 @@
-document.addEventListener("DOMContentLoaded", async () => {
-  const urlParams = new URLSearchParams(window.location.search);
-  const productId = urlParams.get("id");
+document.addEventListener("DOMContentLoaded", function () {
+  const params = new URLSearchParams(window.location.search);
+  const productId = params.get("id");
+  const detailContainer = document.getElementById("product-detail");
 
   if (!productId) {
-    document.getElementById("product-detail").innerHTML = "<p>找不到商品</p>";
+    detailContainer.innerHTML = "<p>無效的商品 ID。</p>";
     return;
   }
 
-  try {
-    const res = await fetch("https://script.google.com/macros/s/AKfycbwqzLNDJyNZn1MTfzIqMy_K9KYZE38ZCLcdP1FNSIFWXOAoRHBuZyviph_YTO73I_7rTA/exec");
-    const products = await res.json();
+  fetch("https://script.google.com/macros/s/AKfycbwqzLNDJyNZn1MTfzIqMy_K9KYZE38ZCLcdP1FNSIFWXOAoRHBuZyviph_YTO73I_7rTA/exec")
+    .then((res) => res.json())
+    .then((data) => {
+      const product = data.find(item => item.ID === productId);
+      if (!product) {
+        detailContainer.innerHTML = "<p>找不到此商品。</p>";
+        return;
+      }
 
-    const product = products.find(p => String(p.ID) === productId);
+      const styles = product.款式 ? product.款式.split(",") : [];
 
-    if (!product) {
-      document.getElementById("product-detail").innerHTML = "<p>找不到此商品</p>";
-      return;
-    }
+      detailContainer.innerHTML = `
+        <div class="product-page">
+          <img src="${product.圖片連結}" alt="${product.商品名稱}">
+          <div class="info">
+            <h2>${product.商品名稱}</h2>
+            <p>價格：${product.價格} 元</p>
+            <p>庫存：${product.庫存} 件</p>
 
-    document.getElementById("product-detail").innerHTML = `
-      <div class="item-page">
-        <img src="${product.商品圖片}" alt="${product.商品名稱}">
-        <div class="info">
-          <h2>${product.商品名稱}</h2>
-          <p class="price">NT$ ${product.價格}</p>
-          <p>庫存：${product.庫存}</p>
-          <button onclick="addToCart('${product.ID}')">加入購物車</button>
+            ${styles.length ? `
+              <label for="style">款式：</label>
+              <select id="style">
+                ${styles.map(style => `<option value="${style}">${style}</option>`).join("")}
+              </select><br><br>
+            ` : ""}
+
+            <label for="quantity">數量：</label>
+            <input type="number" id="quantity" min="1" max="${product.庫存}" value="1" /><br><br>
+
+            <button onclick="addToCart('${product.商品名稱}')">加入購物車</button>
+          </div>
         </div>
-      </div>
-    `;
-  } catch (error) {
-    console.error(error);
-    document.getElementById("product-detail").innerHTML = "<p>載入錯誤</p>";
-  }
+      `;
+    })
+    .catch((err) => {
+      detailContainer.innerHTML = "<p>載入失敗，請稍後再試。</p>";
+      console.error("Error:", err);
+    });
 });
 
-// 範例購物車功能
-function addToCart(productId) {
-  alert("商品 " + productId + " 已加入購物車！");
-  // 這邊可改用 localStorage 實作完整購物車儲存
+function addToCart(productName) {
+  const style = document.getElementById("style")?.value || "無";
+  const quantity = document.getElementById("quantity")?.value || 1;
+
+  alert(`已加入購物車：${productName}（款式：${style}，數量：${quantity}）`);
+
+  // ⬇️ 這邊你可以擴充實際加到購物車邏輯（儲存到 localStorage 或全局變數）
 }
