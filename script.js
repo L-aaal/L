@@ -42,7 +42,7 @@ document.getElementById("order-form").addEventListener("submit", function (event
     orderData[key] = value;
   });
 
-  fetch("https://script.google.com/macros/s/AKfycbwqzLNDJyNZn1MTfzIqMy_K9KYZE38ZCLcdP1FNSIFWXOAoRHBuZyviph_YTO73I_7rTA/exec", {
+  fetch("https://script.google.com/macros/s/AKfycbzPOjIm9CQW6tUkPjIbocP7gw99xltPZ8uMW-RiSQLB5bh1gULZ3oVDu7ZP8HHcfDJ_/exec", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
