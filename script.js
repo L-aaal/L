@@ -1,6 +1,6 @@
 document.addEventListener("DOMContentLoaded", function () {
   // 抓取商品資料
-  fetch("https://script.google.com/macros/s/AKfycbxUgsxmXIDmBGoiHzggwoEN2iexJ1WIrDevXrAEbg671nmOwCVvuATm9oStDpoa6A8B/exec")
+  fetch("https://script.google.com/macros/s/AKfycbwqzLNDJyNZn1MTfzIqMy_K9KYZE38ZCLcdP1FNSIFWXOAoRHBuZyviph_YTO73I_7rTA/exec")
     .then((response) => response.json())
     .then((data) => {
       const productList = document.getElementById("product-list");
@@ -42,7 +42,7 @@ document.getElementById("order-form").addEventListener("submit", function (event
     orderData[key] = value;
   });
 
-  fetch("https://script.google.com/macros/s/AKfycbxUgsxmXIDmBGoiHzggwoEN2iexJ1WIrDevXrAEbg671nmOwCVvuATm9oStDpoa6A8B/exec", {
+  fetch("https://script.google.com/macros/s/AKfycbwqzLNDJyNZn1MTfzIqMy_K9KYZE38ZCLcdP1FNSIFWXOAoRHBuZyviph_YTO73I_7rTA/exec", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
