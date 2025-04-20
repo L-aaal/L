@@ -8,7 +8,8 @@ document.addEventListener("DOMContentLoaded", function () {
         return;
     }
 
-    const productDetailsURL = "https://script.google.com/macros/s/AKfycbwqzLNDJyNZn1MTfzIqMy_K9KYZE38ZCLcdP1FNSIFWXOAoRHBuZyviph_YTO73I_7rTA/exec";
+    // 假設你的商品資料是從這裡取得
+    const productDetailsURL = `https://script.google.com/macros/s/AKfycbwqzLNDJyNZn1MTfzIqMy_K9KYZE38ZCLcdP1FNSIFWXOAoRHBuZyviph_YTO73I_7rTA/exec?id=${productId}`; // 替換成你的 Google Apps Script URL
 
     fetch(productDetailsURL)
         .then(response => {
@@ -17,8 +18,7 @@ document.addEventListener("DOMContentLoaded", function () {
             }
             return response.json();
         })
-        .then(data => {
-            const product = data.find(p => p.ID === productId);
+        .then(product => {
             if (!product) {
                 alert("找不到此商品！");
                 window.location.replace("products.html");
@@ -119,4 +119,5 @@ document.addEventListener("DOMContentLoaded", function () {
 
         })
         .catch(error => console.error("Error fetching product details:", error));
+
 });
