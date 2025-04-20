@@ -1,43 +1,51 @@
-<!-- item.html -->
 <!DOCTYPE html>
 <html lang="zh-Hant">
+
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>商品詳情 - L＆欸嘍</title>
-  <link rel="stylesheet" href="style.css" />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>商品詳情 - L＆欸嘍</title>
+    <link rel="stylesheet" href="style.css" />
 </head>
+
 <body>
-  <header>
-    <h1><a href="index.html">L＆欸嘍</a></h1>
-  </header>
+    <header>
+        <h1><a href="index.html">L＆欸嘍</a></h1>
+    </header>
 
-  <main id="product-detail">
-    <div class="product-image">
-      <img id="product-image" src="" alt="商品圖片" />
-    </div>
-    <div class="product-info">
-      <h2 id="product-name"></h2>
-      <p id="product-price"></p>
-      <p id="product-stock"></p>
+    <main id="product-detail">
+        <section id="product-info">
+            <div class="product-image">
+                <img id="product-image" src="" alt="商品圖片" />
+            </div>
+            <div class="product-details">
+                <h2 id="product-name"></h2>
+                <p id="product-price"></p>
+                <p id="product-description"></p>
 
-      <label for="style-select">
-        款式：
-        <select id="style-select"></select>
-      </label>
-      <br />
+                <div class="options">
+                    <label for="style-select">款式：</label>
+                    <select id="style-select"></select>
+                </div>
 
-      <label for="quantity">
-        數量：
-        <input type="number" id="quantity" min="1" value="1" />
-      </label>
-      <br /><br />
+                <div class="options">
+                    <label for="quantity">數量：</label>
+                    <input type="number" id="quantity" name="quantity" min="1" value="1" />
+                </div>
 
-      <button id="add-to-cart">加入購物車</button>
-      <button id="checkout">直接結帳</button>
-    </div>
-  </main>
+                <div class="actions">
+                    <button id="add-to-cart" class="add-to-cart">加入購物車</button>
+                    <button id="checkout" class="checkout">直接結帳</button>
+                </div>
+            </div>
+        </section>
+    </main>
 
-  <script src="item.js"></script>
+    <footer>
+        <p>&copy; L&欸嘍</p>
+    </footer>
+
+    <script src="item.js"></script>
 </body>
+
 </html>
