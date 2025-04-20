@@ -18,8 +18,7 @@ document.addEventListener("DOMContentLoaded", function () {
                         <img src="${imageSrc}" alt="${item.商品名稱}" />
                         <h3>${item.商品名稱}</h3>
                         <p>價格：${item.價格} 元</p>
-                        <p>庫存：${item.庫存} 件</p>
-                    </a>
+                        </a>
                 `;
 
                 allProductsContainer.appendChild(productCard);
