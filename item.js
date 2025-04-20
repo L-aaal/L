@@ -84,9 +84,9 @@ document.addEventListener("DOMContentLoaded", function () {
                     style: selectedStyle,
                 };
 
-                localStorage.setItem("cart", JSON.stringify([cartItem])); // 注意這裡直接將包含一個商品的陣列存入
+                localStorage.setItem("cart", JSON.stringify([cartItem]));
 
                 window.location.href = "checkout.html";
-            }); // <---- 這裡補上了閉合大括號
-        }); // <---- 這裡補上了 .then 的閉合大括號
-}); // <---- 這裡補上了 DOMContentLoaded 的閉合大括號
+            });
+        });
+});
