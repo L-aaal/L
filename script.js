@@ -36,7 +36,7 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 // 處理訂單送出
-document.getElementById("order-form").addEventListener("submit", function (event) {
+document.getElementById("submit-order").addEventListener("submit", function (event) {
   event.preventDefault();
 
   const formData = new FormData(event.target);
