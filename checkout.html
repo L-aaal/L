@@ -1,10 +1,11 @@
+<!-- checkout.html -->
 <!DOCTYPE html>
 <html lang="zh-Hant">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>結帳 - L＆欸嘍</title>
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
   <header>
@@ -12,44 +13,25 @@
   </header>
 
   <main>
-    <h2>結帳</h2>
-    <form id="checkout-form">
-      <div id="cart-summary"></div>
+    <section>
+      <h2>購物車內容</h2>
+      <ul id="cart-list"></ul>
+      <p id="total-price"></p>
+    </section>
 
-      <label>
-        姓名：<input type="text" name="name" required>
-      </label><br>
-      <label>
-        電話：<input type="tel" name="phone" required>
-      </label><br>
-      <label>
-        信箱：<input type="email" name="email" required>
-      </label><br>
-
-      <label>
-        付款方式：
-        <select name="payment">
-          <option value="貨到付款">貨到付款</option>
-          <option value="信用卡">信用卡</option>
-          <option value="Line Pay">Line Pay</option>
-        </select>
-      </label><br>
-
-      <label>
-        運送方式：
-        <select id="shipping-method" name="shipping">
-          <option value="7-11取貨">7-11取貨</option>
-          <option value="全家取貨">全家取貨</option>
-        </select>
-      </label><br>
-
-      <label>
-        門市選擇：<input type="text" id="store-info" name="store" readonly placeholder="請選擇門市">
-        <button type="button" id="choose-store">選擇門市</button>
-      </label><br>
-
-      <button type="submit">送出訂單</button>
-    </form>
+    <section>
+      <h2>填寫訂單資訊</h2>
+      <form id="checkout-form">
+        <label>姓名：<input type="text" name="顧客姓名" required /></label><br />
+        <label>FB：<input type="text" name="FB" /></label><br />
+        <label>IG：<input type="text" name="IG" /></label><br />
+        <label>社群暱稱：<input type="text" name="社群暱稱" /></label><br />
+        <label>電話：<input type="tel" name="電話" required /></label><br />
+        <label>Gmail：<input type="email" name="Gmail" required /></label><br />
+        <br />
+        <button type="submit">送出訂單</button>
+      </form>
+    </section>
   </main>
 
   <script src="checkout.js"></script>
