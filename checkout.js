@@ -50,7 +50,7 @@ document.addEventListener("DOMContentLoaded", function () {
         order["時間"] = new Date().toLocaleString();
 
         // 傳送到 Google Apps Script
-        fetch("https://script.google.com/macros/s/AKfycbzPOjIm9CQW6tUkPjIbocP7gw99xltPZ8uMW-RiSQLB5bh1gULZ3oVDu7ZP8HHcfDJ_/exec", {
+        fetch("https://script.google.com/macros/s/AKfycbxbqlZ34fGCJL7-dUJF4fKIyD4a3GemLGelwLhIyH_yIGlbsUaBVKxIAEmy0vUftEq9pA/exec", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
