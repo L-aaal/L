@@ -6,17 +6,16 @@ document.addEventListener("DOMContentLoaded", function () {
         .then((data) => {
             allProductsContainer.innerHTML = ""; // 清空 "載入中…"
 
-            data.forEach(item => {
+            data.forEach((item) => {
                 const productCard = document.createElement("div");
                 productCard.classList.add("product-card");
 
                 // 檢查 item.商品圖片 是否存在，如果不存在，提供一個預設值
-                const imageSrc = item.商品圖片 || "images
-/照片跑不出來.jpg"; // 替換成你的預設圖片路徑
+                const imageSrc = item.商品圖片 || "images/照片跑不出來.jpg"; // 替換成你的預設圖片路徑 (已修正)
 
                 productCard.innerHTML = `
                     <a href="item.html?id=${item.ID}">
-                        <img src="${imageSrc}" alt="${item.商品名稱}"/>
+                        <img src="${imageSrc}" alt="${item.商品名稱}" />
                         <h3>${item.商品名稱}</h3>
                         <p>價格：${item.價格} 元</p>
                         <p>庫存：${item.庫存} 件</p>
