@@ -4,47 +4,60 @@ document.addEventListener("DOMContentLoaded", function () {
 
     if (!productId) {
         alert("商品ID無效！");
-        window.location.href = "products.html"; // 導回商品列表頁
+        window.location.replace("products.html"); // 使用 replace 避免瀏覽器歷史紀錄
         return;
     }
 
-    // 假設你的商品資料是從這裡取得
-    fetch(`https://script.google.com/macros/s/AKfycbwqzLNDJyNZn1MTfzIqMy_K9KYZE38ZCLcdP1FNSIFWXOAoRHBuZyviph_YTO73I_7rTA/exec?id=${productId}`) // 替換成你的 Google Apps Script URL
-        .then(response => response.json())
+    const productDetailsURL = `https://script.google.com/macros/s/AKfycbwqzLNDJyNZn1MTfzIqMy_K9KYZE38ZCLcdP1FNSIFWXOAoRHBuZyviph_YTO73I_7rTA/exec?id=${productId}`; // 替換成你的 Google Apps Script URL
+
+    fetch(productDetailsURL)
+        .then(response => {
+            if (!response.ok) {
+                throw new Error(`HTTP error! Status: ${response.status}`);
+            }
+            return response.json();
+        })
         .then(product => {
             if (!product) {
                 alert("找不到此商品！");
-                window.location.href = "products.html"; // 導回商品列表頁
+                window.location.replace("products.html"); // 使用 replace 避免瀏覽器歷史紀錄
                 return;
             }
 
             // 顯示商品資訊
-            document.getElementById("product-name").textContent = product.商品名稱;
-            document.getElementById("product-price").textContent = `${product.價格} 元`;
-            document.getElementById("product-description").textContent = product.描述;
-            document.getElementById("product-image").src = product.商品圖片;
+            const productNameElement = document.getElementById("product-name");
+            const productPriceElement = document.getElementById("product-price");
+            const productDescriptionElement = document.getElementById("product-description");
+            const productImageElement = document.getElementById("product-image");
+
+            if (productNameElement) productNameElement.textContent = product.商品名稱;
+            if (productPriceElement) productPriceElement.textContent = `${product.價格} 元`;
+            if (productDescriptionElement) productDescriptionElement.textContent = product.描述;
+            if (productImageElement) productImageElement.src = product.商品圖片;
 
             // 設定款式選擇
             const styleSelect = document.getElementById("style-select");
-            if (product.款式) {
-                const styles = product.款式.split(",");
-                styles.forEach(style => {
-                    const option = document.createElement("option");
-                    option.value = style.trim();
-                    option.textContent = style.trim();
-                    styleSelect.appendChild(option);
-                });
-            } else {
-                styleSelect.style.display = "none"; // 隱藏款式選擇框
+            if (styleSelect) {
+                if (product.款式) {
+                    const styles = product.款式.split(",");
+                    styles.forEach(style => {
+                        const option = document.createElement("option");
+                        option.value = style.trim();
+                        option.textContent = style.trim();
+                        styleSelect.appendChild(option);
+                    });
+                } else {
+                    styleSelect.style.display = "none"; // 隱藏款式選擇框
+                }
             }
 
             // 加入購物車
-            const addToCartButton = document.getElementById("add-to-cart"); // 取得按鈕元素
-            if (addToCartButton) { // 檢查按鈕是否存在
+            const addToCartButton = document.getElementById("add-to-cart");
+            if (addToCartButton) {
                 addToCartButton.addEventListener("click", function () {
-                    const quantityInput = document.getElementById("quantity"); // 取得數量輸入框
-                    const quantity = parseInt(quantityInput.value);
-                    const selectedStyle = styleSelect.value;
+                    const quantityInput = document.getElementById("quantity");
+                    const quantity = parseInt(quantityInput.value, 10); // 使用 parseInt 並指定基數
+                    const selectedStyle = styleSelect ? styleSelect.value : ""; // 確保 styleSelect 存在
 
                     if (quantity <= 0 || isNaN(quantity)) {
                         alert("請輸入有效的數量！");
@@ -75,17 +88,17 @@ document.addEventListener("DOMContentLoaded", function () {
                     localStorage.setItem("cart", JSON.stringify(cart));
 
                     alert("商品已加入購物車！");
-                    window.location.href = "cart.html"; // 導向購物車頁面
+                    window.location.replace("cart.html"); // 使用 replace 避免瀏覽器歷史紀錄
                 });
             }
 
             // 直接結帳
-            const checkoutButton = document.getElementById("checkout"); // 取得按鈕元素
-            if (checkoutButton) { // 檢查按鈕是否存在
+            const checkoutButton = document.getElementById("checkout");
+            if (checkoutButton) {
                 checkoutButton.addEventListener("click", function () {
-                    const quantityInput = document.getElementById("quantity"); // 取得數量輸入框
-                    const quantity = parseInt(quantityInput.value);
-                    const selectedStyle = styleSelect.value;
+                    const quantityInput = document.getElementById("quantity");
+                    const quantity = parseInt(quantityInput.value, 10); // 使用 parseInt 並指定基數
+                    const selectedStyle = styleSelect ? styleSelect.value : ""; // 確保 styleSelect 存在
 
                     if (quantity <= 0 || isNaN(quantity)) {
                         alert("請輸入有效的數量！");
@@ -102,7 +115,7 @@ document.addEventListener("DOMContentLoaded", function () {
                     };
 
                     localStorage.setItem("cart", JSON.stringify([cartItem]));
-                    window.location.href = "checkout.html";
+                    window.location.replace("checkout.html"); // 使用 replace 避免瀏覽器歷史紀錄
                 });
             }
 
