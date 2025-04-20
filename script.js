@@ -3,23 +3,27 @@ document.addEventListener("DOMContentLoaded", function () {
   fetch("https://script.google.com/macros/s/AKfycbwqzLNDJyNZn1MTfzIqMy_K9KYZE38ZCLcdP1FNSIFWXOAoRHBuZyviph_YTO73I_7rTA/exec")
     .then((response) => response.json())
     .then((data) => {
-      const productList = document.getElementById("product-list");
+      const featured = document.getElementById("featured-products");
       const productSelect = document.getElementById("product");
 
+      // 清空載入區域，顯示「載入中…」
+      featured.innerHTML = "<p>載入中…</p>";
+
+      // 顯示商品卡片
       data.forEach(item => {
-        // 顯示商品卡片
         const productCard = document.createElement("div");
         productCard.classList.add("product-card");
 
         productCard.innerHTML = `
-          <img src="${item.商品圖片}" alt="${item.商品名稱}">
-          <h3>${item.商品名稱}</h3>
-          <p>價格：${item.價格} 元</p>
-          <p>庫存：${item.庫存} 件</p>
-          <button onclick="addToCart('${item.商品名稱}')">加入購物車</button>
+          <a href="item.html?id=${item.ID}">
+            <img src="${item.商品圖片}" alt="${item.商品名稱}">
+            <h3>${item.商品名稱}</h3>
+            <p>價格：${item.價格} 元</p>
+            <p>庫存：${item.庫存} 件</p>
+          </a>
         `;
 
-        productList.appendChild(productCard);
+        featured.appendChild(productCard);
 
         // 填充商品選擇下拉選單
         const option = document.createElement("option");
