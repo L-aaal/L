@@ -21,8 +21,7 @@ document.addEventListener("DOMContentLoaded", function () {
                             <img src="${item.商品圖片}" alt="${item.商品名稱}">
                             <h3>${item.商品名稱}</h3>
                             <p>價格：${item.價格} 元</p>
-                            <p>庫存：${item.庫存} 件</p>
-                        </a>
+                            </a>
                     `;
 
                     featured.appendChild(productCard);
