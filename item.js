@@ -9,7 +9,7 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     // 假設你的商品資料是從這裡取得
-    fetch(`https://script.google.com/macros/s/AKfycbwqzLNDJyNZn1MTfzIqMy_K9KYZE38ZCLcdP1FNSIFWXOAoRHBuZyviph_YTO73I_7rTA/exec?id=${productID}`) // 替換成你的 Google Apps Script URL
+    fetch(`https://script.google.com/macros/s/AKfycbwqzLNDJyNZn1MTfzIqMy_K9KYZE38ZCLcdP1FNSIFWXOAoRHBuZyviph_YTO73I_7rTA/exec?id=${productId}`) // 替換成你的 Google Apps Script URL
         .then(response => response.json())
         .then(product => {
             if (!product) {
@@ -39,64 +39,72 @@ document.addEventListener("DOMContentLoaded", function () {
             }
 
             // 加入購物車
-            document.getElementById("add-to-cart").addEventListener("click", function () {
-                const quantity = parseInt(document.getElementById("quantity").value);
-                const selectedStyle = styleSelect.value;
+            const addToCartButton = document.getElementById("add-to-cart"); // 取得按鈕元素
+            if (addToCartButton) { // 檢查按鈕是否存在
+                addToCartButton.addEventListener("click", function () {
+                    const quantityInput = document.getElementById("quantity"); // 取得數量輸入框
+                    const quantity = parseInt(quantityInput.value);
+                    const selectedStyle = styleSelect.value;
 
-                if (quantity <= 0 || isNaN(quantity)) {
-                    alert("請輸入有效的數量！");
-                    return;
-                }
+                    if (quantity <= 0 || isNaN(quantity)) {
+                        alert("請輸入有效的數量！");
+                        return;
+                    }
 
-                const cartItem = {
-                    productId: product.ID,
-                    productName: product.商品名稱,
-                    price: product.價格,
-                    quantity: quantity,
-                    style: selectedStyle,
-                    image: product.商品圖片 // 加上商品圖片
-                };
+                    const cartItem = {
+                        productId: product.ID,
+                        productName: product.商品名稱,
+                        price: product.價格,
+                        quantity: quantity,
+                        style: selectedStyle,
+                        image: product.商品圖片 // 加上商品圖片
+                    };
 
-                let cart = JSON.parse(localStorage.getItem("cart")) || [];
-                // 檢查購物車中是否已有相同商品
-                const existingItemIndex = cart.findIndex(item => item.productId === cartItem.productId && item.style === cartItem.style);
+                    let cart = JSON.parse(localStorage.getItem("cart")) || [];
+                    // 檢查購物車中是否已有相同商品
+                    const existingItemIndex = cart.findIndex(item => item.productId === cartItem.productId && item.style === cartItem.style);
 
-                if (existingItemIndex > -1) {
-                    // 如果有，則增加數量
-                    cart[existingItemIndex].quantity += quantity;
-                } else {
-                    // 如果沒有，則加入新商品
-                    cart.push(cartItem);
-                }
+                    if (existingItemIndex > -1) {
+                        // 如果有，則增加數量
+                        cart[existingItemIndex].quantity += quantity;
+                    } else {
+                        // 如果沒有，則加入新商品
+                        cart.push(cartItem);
+                    }
 
-                localStorage.setItem("cart", JSON.stringify(cart));
+                    localStorage.setItem("cart", JSON.stringify(cart));
 
-                alert("商品已加入購物車！");
-                window.location.href = "cart.html"; // 導向購物車頁面
-            });
+                    alert("商品已加入購物車！");
+                    window.location.href = "cart.html"; // 導向購物車頁面
+                });
+            }
 
             // 直接結帳
-            document.getElementById("checkout").addEventListener("click", function () {
-                const quantity = parseInt(document.getElementById("quantity").value);
-                const selectedStyle = styleSelect.value;
+            const checkoutButton = document.getElementById("checkout"); // 取得按鈕元素
+            if (checkoutButton) { // 檢查按鈕是否存在
+                checkoutButton.addEventListener("click", function () {
+                    const quantityInput = document.getElementById("quantity"); // 取得數量輸入框
+                    const quantity = parseInt(quantityInput.value);
+                    const selectedStyle = styleSelect.value;
 
-                if (quantity <= 0 || isNaN(quantity)) {
-                    alert("請輸入有效的數量！");
-                    return;
-                }
+                    if (quantity <= 0 || isNaN(quantity)) {
+                        alert("請輸入有效的數量！");
+                        return;
+                    }
 
-                const cartItem = {
-                    productId: product.ID,
-                    productName: product.商品名稱,
-                    price: product.價格,
-                    quantity: quantity,
-                    style: selectedStyle,
-                    image: product.商品圖片 // 加上商品圖片
-                };
+                    const cartItem = {
+                        productId: product.ID,
+                        productName: product.商品名稱,
+                        price: product.價格,
+                        quantity: quantity,
+                        style: selectedStyle,
+                        image: product.商品圖片 // 加上商品圖片
+                    };
 
-                localStorage.setItem("cart", JSON.stringify([cartItem]));
-                window.location.href = "checkout.html";
-            });
+                    localStorage.setItem("cart", JSON.stringify([cartItem]));
+                    window.location.href = "checkout.html";
+                });
+            }
 
         })
         .catch(error => console.error("Error fetching product details:", error));
