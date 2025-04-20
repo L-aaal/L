@@ -1,35 +1,65 @@
 <!DOCTYPE html>
 <html lang="zh-Hant">
+
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>結帳 - L＆欸嘍</title>
-  <link rel="stylesheet" href="style.css" />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>結帳 - L＆欸嘍</title>
+    <link rel="stylesheet" href="style.css" />
 </head>
+
 <body>
-  <header>
-    <h1><a href="index.html">L＆欸嘍</a></h1>
-  </header>
-  <main>
-    <section>
-      <h2>購物車內容</h2>
-      <ul id="cart-list"></ul>
-      <p id="total-price"></p>
-    </section>
-    <section>
-      <h2>填寫訂單資訊</h2>
-      <form id="checkout-form">
-        <label>姓名：<input type="text" name="顧客姓名" required /></label><br />
-        <label>FB：<input type="text" name="FB" /></label><br />
-        <label>IG：<input type="text" name="IG" /></label><br />
-        <label>社群暱稱：<input type="text" name="社群暱稱" /></label><br />
-        <label>電話：<input type="tel" name="電話" required /></label><br />
-        <label>Gmail：<input type="email" name="Gmail" required /></label><br />
-        <br />
-        <button type="submit">送出訂單</button>
-      </form>
-    </section>
-  </main>
-  <script src="checkout.js"></script>
+    <header>
+        <h1><a href="index.html">L＆欸嘍</a></h1>
+    </header>
+
+    <main id="checkout">
+        <section id="cart-summary">
+            <h2>購物車內容</h2>
+            <ul id="cart-items">
+                <p>您的購物車是空的。</p>
+            </ul>
+            <p id="cart-total">總金額：0 元</p>
+        </section>
+
+        <section id="order-form">
+            <h2>填寫訂單資訊</h2>
+            <form id="customer-info">
+                <div class="form-group">
+                    <label for="customer-name">姓名：</label>
+                    <input type="text" id="customer-name" name="顧客姓名" required />
+                </div>
+                <div class="form-group">
+                    <label for="customer-fb">FB：</label>
+                    <input type="text" id="customer-fb" name="FB" />
+                </div>
+                <div class="form-group">
+                    <label for="customer-ig">IG：</label>
+                    <input type="text" id="customer-ig" name="IG" />
+                </div>
+                <div class="form-group">
+                    <label for="customer-nickname">社群暱稱：</label>
+                    <input type="text" id="customer-nickname" name="社群暱稱" />
+                </div>
+                <div class="form-group">
+                    <label for="customer-phone">電話：</label>
+                    <input type="tel" id="customer-phone" name="電話" required />
+                </div>
+                <div class="form-group">
+                    <label for="customer-gmail">Gmail：</label>
+                    <input type="email" id="customer-gmail" name="Gmail" required />
+                </div>
+
+                <button type="submit" id="submit-order">送出訂單</button>
+            </form>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; L&欸嘍</p>
+    </footer>
+
+    <script src="checkout.js"></script>
 </body>
+
 </html>
