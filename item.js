@@ -4,11 +4,11 @@ document.addEventListener("DOMContentLoaded", function () {
 
     if (!productId) {
         alert("商品ID無效！");
-        window.location.replace("products.html"); // 使用 replace 避免瀏覽器歷史紀錄
+        window.location.replace("products.html");
         return;
     }
 
-    const productDetailsURL = `https://script.google.com/macros/s/AKfycbwqzLNDJyNZn1MTfzIqMy_K9KYZE38ZCLcdP1FNSIFWXOAoRHBuZyviph_YTO73I_7rTA/exec?id=${productId}`; // 替換成你的 Google Apps Script URL
+    const productDetailsURL = "https://script.google.com/macros/s/AKfycbwqzLNDJyNZn1MTfzIqMy_K9KYZE38ZCLcdP1FNSIFWXOAoRHBuZyviph_YTO73I_7rTA/exec";
 
     fetch(productDetailsURL)
         .then(response => {
@@ -17,10 +17,11 @@ document.addEventListener("DOMContentLoaded", function () {
             }
             return response.json();
         })
-        .then(product => {
+        .then(data => {
+            const product = data.find(p => p.ID === productId);
             if (!product) {
                 alert("找不到此商品！");
-                window.location.replace("products.html"); // 使用 replace 避免瀏覽器歷史紀錄
+                window.location.replace("products.html");
                 return;
             }
 
@@ -47,7 +48,7 @@ document.addEventListener("DOMContentLoaded", function () {
                         styleSelect.appendChild(option);
                     });
                 } else {
-                    styleSelect.style.display = "none"; // 隱藏款式選擇框
+                    styleSelect.style.display = "none";
                 }
             }
 
@@ -56,8 +57,8 @@ document.addEventListener("DOMContentLoaded", function () {
             if (addToCartButton) {
                 addToCartButton.addEventListener("click", function () {
                     const quantityInput = document.getElementById("quantity");
-                    const quantity = parseInt(quantityInput.value, 10); // 使用 parseInt 並指定基數
-                    const selectedStyle = styleSelect ? styleSelect.value : ""; // 確保 styleSelect 存在
+                    const quantity = parseInt(quantityInput.value, 10);
+                    const selectedStyle = styleSelect ? styleSelect.value : "";
 
                     if (quantity <= 0 || isNaN(quantity)) {
                         alert("請輸入有效的數量！");
@@ -70,25 +71,22 @@ document.addEventListener("DOMContentLoaded", function () {
                         price: product.價格,
                         quantity: quantity,
                         style: selectedStyle,
-                        image: product.商品圖片 // 加上商品圖片
+                        image: product.商品圖片
                     };
 
                     let cart = JSON.parse(localStorage.getItem("cart")) || [];
-                    // 檢查購物車中是否已有相同商品
                     const existingItemIndex = cart.findIndex(item => item.productId === cartItem.productId && item.style === cartItem.style);
 
                     if (existingItemIndex > -1) {
-                        // 如果有，則增加數量
                         cart[existingItemIndex].quantity += quantity;
                     } else {
-                        // 如果沒有，則加入新商品
                         cart.push(cartItem);
                     }
 
                     localStorage.setItem("cart", JSON.stringify(cart));
 
                     alert("商品已加入購物車！");
-                    window.location.replace("cart.html"); // 使用 replace 避免瀏覽器歷史紀錄
+                    window.location.replace("cart.html");
                 });
             }
 
@@ -97,8 +95,8 @@ document.addEventListener("DOMContentLoaded", function () {
             if (checkoutButton) {
                 checkoutButton.addEventListener("click", function () {
                     const quantityInput = document.getElementById("quantity");
-                    const quantity = parseInt(quantityInput.value, 10); // 使用 parseInt 並指定基數
-                    const selectedStyle = styleSelect ? styleSelect.value : ""; // 確保 styleSelect 存在
+                    const quantity = parseInt(quantityInput.value, 10);
+                    const selectedStyle = styleSelect ? styleSelect.value : "";
 
                     if (quantity <= 0 || isNaN(quantity)) {
                         alert("請輸入有效的數量！");
@@ -111,15 +109,14 @@ document.addEventListener("DOMContentLoaded", function () {
                         price: product.價格,
                         quantity: quantity,
                         style: selectedStyle,
-                        image: product.商品圖片 // 加上商品圖片
+                        image: product.商品圖片
                     };
 
                     localStorage.setItem("cart", JSON.stringify([cartItem]));
-                    window.location.replace("checkout.html"); // 使用 replace 避免瀏覽器歷史紀錄
+                    window.location.replace("checkout.html");
                 });
             }
 
         })
         .catch(error => console.error("Error fetching product details:", error));
-
 });
