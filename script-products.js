@@ -11,8 +11,8 @@ document.addEventListener("DOMContentLoaded", function () {
                 productCard.classList.add("product-card");
 
                 productCard.innerHTML = `
-                    <a href="item.html?id=${item.ID}">
-                        <img src="${item.商品圖片}" alt="${item.商品名稱}">
+                    <a href="item.html?id=${item.ID}"/>
+                        <img src="${item.商品圖片}" alt="${item.商品名稱}"/>
                         <h3>${item.商品名稱}</h3>
                         <p>價格：${item.價格} 元</p>
                         <p>庫存：${item.庫存} 件</p>
