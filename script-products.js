@@ -11,7 +11,8 @@ document.addEventListener("DOMContentLoaded", function () {
                 productCard.classList.add("product-card");
 
                 // 檢查 item.商品圖片 是否存在，如果不存在，提供一個預設值
-                const imageSrc = item.商品圖片 || "path/to/default-image.png"; // 替換成你的預設圖片路徑
+                const imageSrc = item.商品圖片 || "images
+/照片跑不出來"; // 替換成你的預設圖片路徑
 
                 productCard.innerHTML = `
                     <a href="item.html?id=${item.ID}">
