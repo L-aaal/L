@@ -7,12 +7,12 @@
 
 body {
   font-family: Arial, sans-serif;
-  background-color: #f9f9f9;
+  background-color: #F5F5DC; /* 米色 (Beige) - 根據你的色彩方案調整 */
 }
 
 header {
-  background-color: #333;
-  color: #fff;
+  background-color: #A9B1BA; /* 帶有灰度的藍色 (Light Steel Blue) - 根據你的色彩方案調整 */
+  color: #FFFFFF;
   padding: 10px 0;
   text-align: center;
 }
@@ -22,13 +22,18 @@ header nav {
 }
 
 header nav a {
-  color: #fff;
+  color: #E0FFFF; /* 淡青色 (Light Cyan) - 在淺藍色背景上清晰 */
   margin: 0 10px;
   text-decoration: none;
   font-size: 18px;
 }
 
 h1, h2 {
+  font-size: 24px;
+}
+
+.featured h2 {
+  color: #6B8E23; /* 橄欖綠 (Olive Drab) - 來自你的色彩方案 */
   font-size: 24px;
 }
 
@@ -45,11 +50,11 @@ h1, h2 {
 }
 
 .product-card {
-  background-color: white;
+  background-color: #FAF0E6; /* 亞麻色 (Linen) - 非常淺的米色 */
   padding: 20px;
   margin-bottom: 20px;
   border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05); /* 稍微減弱陰影 */
   width: 30%;
   text-align: center;
 }
@@ -63,14 +68,16 @@ h1, h2 {
 .product-card h3 {
   font-size: 18px;
   margin: 10px 0;
+  color: #4682B4; /* 鋼青色 (Steel Blue) - 來自你的藍色系 */
 }
 
 .product-card p {
   font-size: 16px;
+  color: #556B2F; /* 深橄欖綠 (Dark Olive Green) - 來自你的綠色系 */
 }
 
 button {
-  background-color: #333;
+  background-color: #4682B4; /* 鋼青色 (Steel Blue) - 與商品名稱呼應 */
   color: #fff;
   padding: 10px;
   border: none;
@@ -79,7 +86,7 @@ button {
 }
 
 button:hover {
-  background-color: #555;
+  background-color: #5F9EA0; /* 矢車菊藍 (Cadet Blue) - 稍微深一點的藍色 */
 }
 
 form {
@@ -98,6 +105,6 @@ form input, form select, form button {
 footer {
   text-align: center;
   padding: 20px;
-  background-color: #333;
-  color: #fff;
+  background-color: #A9B1BA; /* 與 header 相同的淺藍灰色 */
+  color: #FFFFFF;
 }
