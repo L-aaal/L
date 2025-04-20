@@ -10,9 +10,12 @@ document.addEventListener("DOMContentLoaded", function () {
                 const productCard = document.createElement("div");
                 productCard.classList.add("product-card");
 
+                // 檢查 item.商品圖片 是否存在，如果不存在，提供一個預設值
+                const imageSrc = item.商品圖片 || "path/to/default-image.png"; // 替換成你的預設圖片路徑
+
                 productCard.innerHTML = `
-                    <a href="item.html?id=${item.ID}"/>
-                        <img src="${item.商品圖片}" alt="${item.商品名稱}"/>
+                    <a href="item.html?id=${item.ID}">
+                        <img src="${imageSrc}" alt="${item.商品名稱}"/>
                         <h3>${item.商品名稱}</h3>
                         <p>價格：${item.價格} 元</p>
                         <p>庫存：${item.庫存} 件</p>
