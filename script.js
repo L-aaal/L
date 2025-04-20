@@ -34,9 +34,17 @@ document.addEventListener("DOMContentLoaded", function () {
                 // 填充商品選擇下拉選單
                 data.forEach(item => {
                     const option = document.createElement("option");
-                    option.value = item.商品名稱;
+                    option.value = item.ID; // 使用 item.ID 作為選項的值
                     option.textContent = item.商品名稱;
                     productSelect.appendChild(option);
+                });
+
+                // 新增這段程式碼來處理選擇事件
+                productSelect.addEventListener("change", function () {
+                    const selectedProductId = this.value; // 取得選取的值 (商品 ID)
+                    if (selectedProductId) {
+                        window.location.href = `item.html?id=${selectedProductId}`; // 導向商品詳情頁
+                    }
                 });
             }
         })
