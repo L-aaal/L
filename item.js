@@ -9,7 +9,7 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     // 假設你的商品資料是從這裡取得
-    fetch(`https://script.google.com/macros/s/YOUR_GOOGLE_APPS_SCRIPT_ID/exec?id=${productId}`) // 替換成你的 Google Apps Script URL
+    fetch(`https://script.google.com/macros/s/AKfycbwqzLNDJyNZn1MTfzIqMy_K9KYZE38ZCLcdP1FNSIFWXOAoRHBuZyviph_YTO73I_7rTA/exec?id=${productId}`) // 替換成你的 Google Apps Script URL
         .then(response => response.json())
         .then(product => {
             if (!product) {
