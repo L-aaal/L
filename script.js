@@ -36,7 +36,7 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 // 處理訂單送出
-document.getElementById("submit-order").addEventListener("submit", function (event) {
+document.getElementById("order-form").addEventListener("submit", function (event) {
   event.preventDefault();
 
   const formData = new FormData(event.target);
@@ -46,7 +46,7 @@ document.getElementById("submit-order").addEventListener("submit", function (eve
     orderData[key] = value;
   });
 
-  fetch("https://script.google.com/macros/s/AKfycbzPOjIm9CQW6tUkPjIbocP7gw99xltPZ8uMW-RiSQLB5bh1gULZ3oVDu7ZP8HHcfDJ_/exec", {
+  fetch("https://script.google.com/macros/s/AKfycbxbqlZ34fGCJL7-dUJF4fKIyD4a3GemLGelwLhIyH_yIGlbsUaBVKxIAEmy0vUftEq9pA/exec", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
