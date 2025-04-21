@@ -46,7 +46,6 @@ h1, h2 {
 .product-list {
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-between;
 }
 
 .product-card {
