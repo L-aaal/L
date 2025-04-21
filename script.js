@@ -63,7 +63,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 orderData[key] = value;
             });
 
-            fetch("https://script.google.com/macros/s/AKfycbzfFTis35Ukfn6KJ1b_v_-9IYH2sGdwLWMNOybclapjyt7UNI2IbSHC-CGuuqKGeVZTZw/exec", {
+            fetch("https://script.google.com/macros/s/AKfycbwQn2oXiqpLgTzw4LJEyGuKvtxrtt7XFDyrLU1Y0eopd63q9JRm59HlVvz8AXSNY2BnZw/exec", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
