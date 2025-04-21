@@ -69,6 +69,7 @@ document.addEventListener("DOMContentLoaded", function () {
                     "Content-Type": "application/json",
                 },
                 body: JSON.stringify(orderData),
+                mode: "no-cors" //嘉眉給的程式，一定要留著！！！！！！
             })
                 .then((response) => response.text())
                 .then((data) => {
