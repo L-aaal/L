@@ -39,5 +39,28 @@
   </footer>
 
   <script src="script.js"></script>
+
+  <input type="email" id="email" placeholder="Email">
+<input type="password" id="password" placeholder="Password">
+<button id="registerBtn">註冊</button>
+
+<script type="module">
+  // ...firebaseConfig 初始化略...
+
+  document.getElementById("registerBtn").onclick = () => {
+    const email = document.getElementById("email").value;
+    const password = document.getElementById("password").value;
+
+    createUserWithEmailAndPassword(auth, email, password)
+      .then((userCredential) => {
+        console.log("註冊成功", userCredential.user);
+        setDoc(doc(db, "carts", userCredential.user.uid), { items: [] });
+      })
+      .catch((error) => {
+        console.error("註冊錯誤", error);
+      });
+  };
+</script>
+
 </body>
 </html>
